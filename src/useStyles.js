@@ -4,24 +4,15 @@ import { makeStyles } from "@mui/styles";
 const theme = createTheme();
 
 export const useStyles = makeStyles(() => ({
-  leftNav: {
-    background: (props) =>
-      props.isDarkTheme ? theme.palette.common.black : theme.palette.grey[200],
-    [theme.breakpoints.up("lg")]: {
-      float: "left",
-      height: "100vh",
-      width: 250,
-      position: "fixed",
-    },
-    paddingTop: "64px",
-    left: "0",
-    marginLeft: "-8px",
+  drawerListItem: {
+    color: "inherit",
   },
   appContainer: {
-    [theme.breakpoints.up("lg")]: {
-      paddingTop: "64px",
-      marginLeft: 250,
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: "240px",
     },
+    width: "calc(100% - 240px)",
+    maxWidth: "inherit",
   },
   homePageAvatar: {
     width: 120,
@@ -36,13 +27,6 @@ export const useStyles = makeStyles(() => ({
     width: "fit-content",
     margin: "auto",
   },
-  calculatorHeading: {
-    marginBottom: "2rem",
-  },
-  calculatorWarning: {
-    color: theme.palette.warning.main,
-    marginBottom: "0.5rem",
-  },
   displayField: {
     color: "#fff",
     backgroundColor: (props) =>
@@ -50,7 +34,6 @@ export const useStyles = makeStyles(() => ({
     fontWeight: "bold",
     height: "3em",
     textAlign: "right",
-    width: "98%",
     fontSize: "24px",
   },
   buttonPanel: {
@@ -82,7 +65,7 @@ export const useStyles = makeStyles(() => ({
     },
   },
   contentBox: {
-    margin: "3rem 0",
+    margin: "0 0 3rem 0",
     paddingTop: "2rem",
     boxShadow: theme.shadows[11],
     backgroundColor: theme.palette.mode,
@@ -116,7 +99,6 @@ export const useStyles = makeStyles(() => ({
   },
   experienceCardsStack: {
     flexWrap: "wrap",
-    maxWidth: "870px",
     margin: "0 auto",
     marginBottom: "1rem",
     [theme.breakpoints.down("md")]: {
@@ -141,5 +123,22 @@ export const useStyles = makeStyles(() => ({
       props.isDarkTheme
         ? `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.secondary.light})`
         : `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  },
+  footer: {
+    borderTop: "1px solid",
+    textAlign: "center",
+    padding: "20px",
+    position: "fixed",
+    left: "0",
+    bottom: "0",
+    height: "60px",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: "240px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    width: "calc(100% - 240px)",
+    maxWidth: "inherit",
   },
 }));

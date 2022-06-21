@@ -9,7 +9,10 @@ export default function Home() {
   const { isDarkTheme } = useContext(AppContext);
   const classes = useStyles({ isDarkTheme });
   return (
-    <Container maxWidth="sm" sx={{ margin: "auto", textAlign: "center" }}>
+    <Container
+      sx={{ margin: "auto", textAlign: "center" }}
+      className={classes.appContainer}
+    >
       <Box
         sx={{
           display: "flex",

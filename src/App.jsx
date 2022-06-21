@@ -1,12 +1,18 @@
-import LeftNav from "./components/LeftNav";
 import { AppContextProvider } from "./ApplicationContext";
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import ButtonAppBar from "./components/AppBar";
-import AppContainer from "./components/AppContainer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import AboutMe from "./components/AboutMe";
+import Experience from "./components/Experience";
+import ContactMe from "./components/ContactMe";
+import WeatherSearch from "./components/WeatherApp/WeatherSearch";
+import Calculator from "./components/Calculator/Calculator";
+import PermanentDrawerLeft from "./components/PermanentDrawerLeft";
+import Footer from "./components/Footer";
 
 function App() {
-  const [page, setPage] = useState("home");
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isLeftNavOpen, setIsLeftNavOpen] = useState(true);
   const dark = {
@@ -23,8 +29,6 @@ function App() {
     <>
       <AppContextProvider
         value={{
-          page,
-          setPage,
           isDarkTheme,
           setIsDarkTheme,
           isLeftNavOpen,
@@ -34,9 +38,25 @@ function App() {
         <ThemeProvider
           theme={isDarkTheme ? createTheme(dark) : createTheme(light)}
         >
-          <ButtonAppBar />
-          <LeftNav />
-          <AppContainer />
+          <Router>
+            <ButtonAppBar />
+            <PermanentDrawerLeft />
+            <Routes>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/about-me" element={<AboutMe />}></Route>
+              <Route path="/experience" element={<Experience />}></Route>
+              <Route path="/contact-me" element={<ContactMe />}></Route>
+              <Route
+                path="/projects/weather-app"
+                element={<WeatherSearch />}
+              ></Route>
+              <Route
+                path="/projects/calculator"
+                element={<Calculator />}
+              ></Route>
+            </Routes>
+            <Footer />
+          </Router>
         </ThemeProvider>
       </AppContextProvider>
     </>

@@ -40,7 +40,7 @@ export default function AboutMe() {
   const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   const classes = useStyles({ isDarkTheme });
   return (
-    <Container className="about-me">
+    <Container className={classes.appContainer}>
       <Box className={classes.contentBox}>
         <Slide direction="left" in={true}>
           <Typography
@@ -58,7 +58,12 @@ export default function AboutMe() {
         <Stack>
           <List>
             <ListItemButton onClick={() => setShowSummary(!showSummary)}>
-              <Typography variant="h5" align="center" gutterBottom={true}>
+              <Typography
+                variant="h5"
+                align="center"
+                gutterBottom={true}
+                textAlign="center"
+              >
                 {showSummary ? <MenuOpenIcon /> : <MenuIcon />}
                 Summary
               </Typography>
