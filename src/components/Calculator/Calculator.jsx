@@ -1,10 +1,12 @@
 import { Box, Stack, Container, Card, CardHeader } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 import ButtonPanel from "./ButtonPanel";
 
 export default function Calculator() {
-  const classes = useStyles();
+  const { isDarkTheme } = useContext(AppContext);
+  const classes = useStyles({ isDarkTheme });
   const [value, setValue] = useState("0");
   const [addedValues, setAddedValues] = useState([]);
   const [operator, setOperator] = useState();

@@ -11,11 +11,13 @@ import {
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import React from "react";
+import React, { useContext } from "react";
 import { useStyles } from "../useStyles";
+import AppContext from "../ApplicationContext";
 
 export default function ContactMe() {
-  const classes = useStyles();
+  const { isDarkTheme } = useContext(AppContext);
+  const classes = useStyles({ isDarkTheme });
   return (
     <Container className={classes.appContainer}>
       <Box className={classes.contentBox}>
@@ -34,11 +36,15 @@ export default function ContactMe() {
         </Slide>
         <Stack sx={{ alignItems: "center" }}>
           <Box className="cotact-me">
-            <Typography variant="h6" variantMapping={{ h6: "h2" }}>
+            <Typography
+              variant="h6"
+              variantMapping={{ h6: "h2" }}
+              sx={{ pl: 1 }}
+            >
               You can react out to me using below details
             </Typography>
-            <List component="ul" className={classes.listStyleDisc}>
-              <ListItem button={false} className={classes.listAsItem}>
+            <List component="ul">
+              <ListItem button={false}>
                 <Link
                   href="https://www.linkedin.com/in/yash-oza"
                   underline="none"
@@ -48,7 +54,7 @@ export default function ContactMe() {
                   </Typography>
                 </Link>
               </ListItem>
-              <ListItem button={false} className={classes.listAsItem}>
+              <ListItem button={false}>
                 <Link href="mailto:yashmichael@gmail.com" underline="none">
                   <Typography variant="h5" gutterBottom={true}>
                     <EmailOutlinedIcon /> Email
@@ -56,11 +62,15 @@ export default function ContactMe() {
                 </Link>
               </ListItem>
             </List>
-            <Typography variant="h6" variantMapping={{ h6: "h2" }}>
+            <Typography
+              variant="h6"
+              variantMapping={{ h6: "h2" }}
+              sx={{ pl: 1 }}
+            >
               You can also access my Github using below Link
             </Typography>
-            <List component="ul" className={classes.listStyleDisc}>
-              <ListItem button={false} className={classes.listAsItem}>
+            <List component="ul">
+              <ListItem button={false}>
                 <Link href="https://github.com/yoza13" underline="none">
                   <Typography variant="h5" gutterBottom={true}>
                     GitHub

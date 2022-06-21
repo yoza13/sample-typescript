@@ -9,8 +9,8 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import * as React from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 import TemperatureDetails from "./TemperatureDetails";
 
@@ -20,7 +20,8 @@ export const WeatherSearch = () => {
   const [zip, setZip] = useState("");
   const [temperature, setTemperature] = useState({});
   const [isError, setIsError] = useState(false);
-  const classes = useStyles();
+  const { isDarkTheme } = useContext(AppContext);
+  const classes = useStyles({ isDarkTheme });
   const api_key = "356ff24d62590793f00f5de022e88895";
   const callApi = () => {
     let queryParam = [];

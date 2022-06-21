@@ -2,6 +2,7 @@ import { createTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const theme = createTheme();
+console.log(theme);
 
 export const useStyles = makeStyles(() => ({
   drawerListItem: {
@@ -11,7 +12,11 @@ export const useStyles = makeStyles(() => ({
     [theme.breakpoints.up("sm")]: {
       marginLeft: "240px",
     },
-    width: "calc(100% - 240px)",
+    [theme.breakpoints.up("md")]: {
+      width: "calc(100% - 240px)",
+      maxWidth: "inherit",
+    },
+    width: "100%",
     maxWidth: "inherit",
   },
   homePageAvatar: {
@@ -67,7 +72,10 @@ export const useStyles = makeStyles(() => ({
   contentBox: {
     margin: "0 0 3rem 0",
     paddingTop: "2rem",
-    boxShadow: theme.shadows[11],
+    boxShadow: (props) =>
+      props.isDarkTheme
+        ? "0px 6px 7px -4px rgba(128,128,128,0.8),0px 11px 15px 1px rgba(128,128,128,0.8),0px 4px 20px 3px rgba(128,128,128,0.8)"
+        : theme.shadows[11],
     backgroundColor: theme.palette.mode,
   },
   listStyleDisc: {
@@ -126,7 +134,9 @@ export const useStyles = makeStyles(() => ({
   },
   footer: {
     borderTop: "1px solid",
-    backgroundColor: theme.palette.grey[400],
+    backgroundColor: (props) =>
+      props.isDarkTheme ? theme.palette.grey[900] : theme.palette.primary.main,
+    color: "#fff",
     textAlign: "center",
     padding: "20px",
     position: "fixed",

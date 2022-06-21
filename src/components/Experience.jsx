@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -35,6 +35,7 @@ import {
 } from "@mui/material";
 import expData from "../content/experience.json";
 import { useStyles } from "../useStyles";
+import AppContext from "../ApplicationContext";
 
 export default function Experience() {
   const [openResp, setOpenResp] = useState([]);
@@ -51,7 +52,8 @@ export default function Experience() {
     if (alt === "ADP") return adp;
     if (alt === "apple") return Apple;
   };
-  const classes = useStyles();
+  const { isDarkTheme } = useContext(AppContext);
+  const classes = useStyles({ isDarkTheme });
 
   return (
     <Container className={classes.appContainer}>
