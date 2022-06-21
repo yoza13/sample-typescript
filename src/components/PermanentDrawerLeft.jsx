@@ -12,9 +12,10 @@ import { Link as RouterLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Collapse, ListItem } from "@mui/material";
+import { Collapse, IconButton, ListItem } from "@mui/material";
 import { useStyles } from "../useStyles";
 import AppContext from "../ApplicationContext";
+import CloseIcon from "@mui/icons-material/Close";
 
 const drawerWidth = 240;
 
@@ -61,70 +62,81 @@ function ResponsiveDrawer(props) {
   const navigate = useNavigate();
   const { isDarkTheme } = useContext(AppContext);
   const classes = useStyles({ isDarkTheme });
-
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {leftNavItems.map((item, index) => (
-          <>
-            {!item.list ? (
-              <ListItem
-                component={RouterLink}
-                to={item.page}
-                className={classes.drawerListItem}
-              >
-                <ListItemButton
-                  key={item + index}
-                  disablePadding
-                  onClick={() => navigate(item.page)}
+  const drawer = ({ allowClose }) => {
+    return (
+      <div>
+        <Toolbar>
+          {allowClose && (
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          )}
+        </Toolbar>
+        <Divider />
+        <List>
+          {leftNavItems.map((item, index) => (
+            <>
+              {!item.list ? (
+                <ListItem
+                  component={RouterLink}
+                  to={item.page}
+                  className={classes.drawerListItem}
                 >
-                  <ListItemText primary={item.title} />
-                </ListItemButton>
-              </ListItem>
-            ) : (
-              <>
-                <ListItemButton
-                  key={item + index}
-                  disablePadding
-                  onClick={() => setOpen(!open)}
-                >
-                  <ListItemText primary={item.title} sx={{ pl: "16px" }} />
-                  {open ? (
-                    <ExpandLess color={isDarkTheme ? "secondary" : "primary"} />
-                  ) : (
-                    <ExpandMore color={isDarkTheme ? "secondary" : "primary"} />
-                  )}
-                </ListItemButton>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                  <List component="ul" className={classes.listStyleDisc}>
-                    {item?.list.map((projects, index) => {
-                      return (
-                        <ListItem
-                          key={index + projects.page}
-                          component={RouterLink}
-                          to={projects.page}
-                          className={classes.drawerListItem}
-                        >
-                          <ListItemButton
-                            sx={{ pl: 4 }}
-                            onClick={() => navigate(projects.page)}
+                  <ListItemButton
+                    key={item + index}
+                    disablePadding
+                    onClick={() => navigate(item.page)}
+                  >
+                    <ListItemText primary={item.title} />
+                  </ListItemButton>
+                </ListItem>
+              ) : (
+                <>
+                  <ListItemButton
+                    key={item + index}
+                    disablePadding
+                    onClick={() => setOpen(!open)}
+                  >
+                    <ListItemText primary={item.title} sx={{ pl: "16px" }} />
+                    {open ? (
+                      <ExpandLess
+                        color={isDarkTheme ? "secondary" : "primary"}
+                      />
+                    ) : (
+                      <ExpandMore
+                        color={isDarkTheme ? "secondary" : "primary"}
+                      />
+                    )}
+                  </ListItemButton>
+                  <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="ul" className={classes.listStyleDisc}>
+                      {item?.list.map((projects, index) => {
+                        return (
+                          <ListItem
+                            key={index + projects.page}
+                            component={RouterLink}
+                            to={projects.page}
+                            className={classes.drawerListItem}
                           >
-                            <ListItemText primary={projects.title} />
-                          </ListItemButton>
-                        </ListItem>
-                      );
-                    })}
-                  </List>
-                </Collapse>
-              </>
-            )}
-          </>
-        ))}
-      </List>
-    </div>
-  );
+                            <ListItemButton
+                              sx={{ pl: 4 }}
+                              onClick={() => navigate(projects.page)}
+                            >
+                              <ListItemText primary={projects.title} />
+                            </ListItemButton>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  </Collapse>
+                </>
+              )}
+            </>
+          ))}
+        </List>
+      </div>
+    );
+  };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -154,7 +166,7 @@ function ResponsiveDrawer(props) {
             },
           }}
         >
-          {drawer}
+          {drawer({ allowClose: true })}
         </Drawer>
         <Drawer
           variant="permanent"
@@ -167,7 +179,7 @@ function ResponsiveDrawer(props) {
           }}
           open
         >
-          {drawer}
+          {drawer({})}
         </Drawer>
       </Box>
       <Box
