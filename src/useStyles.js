@@ -126,6 +126,7 @@ export const useStyles = makeStyles(() => ({
   },
   footer: {
     borderTop: "1px solid",
+    backgroundColor: theme.palette.grey[400],
     textAlign: "center",
     padding: "20px",
     position: "fixed",
@@ -140,5 +141,6 @@ export const useStyles = makeStyles(() => ({
     },
     width: "calc(100% - 240px)",
     maxWidth: "inherit",
+    zIndex: 100,
   },
 }));

@@ -1,15 +1,18 @@
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useContext } from "react";
-import AppContext from "../ApplicationContext";
+import React from "react";
 import { useStyles } from "../useStyles";
 
 export default function Footer() {
-  const { isDarkTheme } = useContext(AppContext);
-  const classes = useStyles({ isDarkTheme });
+  const classes = useStyles();
   return (
     <Container className={classes.footer}>
-      <Typography align="center">Made by Yash Oza</Typography>
+      <Typography
+        align="center"
+        sx={{ fontSize: "24px", letterSpacing: "1.5px" }}
+      >
+        Made by Yash Oza
+      </Typography>
     </Container>
   );
 }
