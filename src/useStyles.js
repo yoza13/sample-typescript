@@ -1,0 +1,145 @@
+import { createTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const theme = createTheme();
+
+export const useStyles = makeStyles(() => ({
+  leftNav: {
+    background: (props) =>
+      props.isDarkTheme ? theme.palette.common.black : theme.palette.grey[200],
+    [theme.breakpoints.up("lg")]: {
+      float: "left",
+      height: "100vh",
+      width: 250,
+      position: "fixed",
+    },
+    paddingTop: "64px",
+    left: "0",
+    marginLeft: "-8px",
+  },
+  appContainer: {
+    [theme.breakpoints.up("lg")]: {
+      paddingTop: "64px",
+      marginLeft: 250,
+    },
+  },
+  homePageAvatar: {
+    width: 120,
+    height: 120,
+    border: "5px solid #8f40e9",
+    borderColor: (props) =>
+      props.isDarkTheme
+        ? theme.palette.common.black
+        : theme.palette.primary.dark,
+  },
+  calculatorBox: {
+    width: "fit-content",
+    margin: "auto",
+  },
+  calculatorHeading: {
+    marginBottom: "2rem",
+  },
+  calculatorWarning: {
+    color: theme.palette.warning.main,
+    marginBottom: "0.5rem",
+  },
+  displayField: {
+    color: "#fff",
+    backgroundColor: (props) =>
+      props.isDarkTheme ? theme.palette.grey.dark : theme.palette.grey[400],
+    fontWeight: "bold",
+    height: "3em",
+    textAlign: "right",
+    width: "98%",
+    fontSize: "24px",
+  },
+  buttonPanel: {
+    marginBottom: "2rem",
+  },
+  buttonStack: {
+    borderTop: "1px solid",
+    "&:last-child": {
+      borderBottom: "1px solid",
+    },
+  },
+  buttons: {
+    fontSize: "24px",
+    color: (props) => (props.isDarkTheme ? "#fff" : "#000"),
+    borderRight: "1px solid",
+    borderRadius: 0,
+    width: "25%",
+    backgroundColor: (props) =>
+      props.isDarkTheme ? theme.palette.grey.dark : theme.palette.grey[200],
+    "&:last-child": {
+      borderRight: "none",
+      backgroundColor: (props) =>
+        props.isDarkTheme
+          ? theme.palette.warning.dark
+          : theme.palette.warning.light,
+    },
+    "&.wide": {
+      width: "50%",
+    },
+  },
+  contentBox: {
+    margin: "3rem 0",
+    paddingTop: "2rem",
+    boxShadow: theme.shadows[11],
+    backgroundColor: theme.palette.mode,
+  },
+  listStyleDisc: {
+    listStyle: "disc",
+  },
+  listAsItem: {
+    display: "list-item",
+  },
+  experienceCard: {
+    maxWidth: 345,
+    marginRight: "2rem",
+    marginBottom: "3rem",
+    marginLeft: "2rem",
+  },
+  boldWeight: {
+    fontWeight: "bold",
+  },
+  dividerStyle: {
+    borderColor: "inherit",
+    margin: "auto",
+    width: "60%",
+    marginBottom: "1rem",
+  },
+  experienceAccordionStack: {
+    marginBottom: "1rem",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  experienceCardsStack: {
+    flexWrap: "wrap",
+    maxWidth: "870px",
+    margin: "0 auto",
+    marginBottom: "1rem",
+    [theme.breakpoints.down("md")]: {
+      display: "none",
+    },
+  },
+  downloadBlock: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  downloadLinks: {
+    border: (props) =>
+      props.isDarkTheme
+        ? `10px solid ${theme.palette.secondary.dark}`
+        : `10px solid ${theme.palette.primary.dark}`,
+    padding: " 1rem 2rem",
+    marginBottom: "2rem",
+    textDecoration: "none",
+    color: "#fff",
+    fontWeight: "bold",
+    backgroundImage: (props) =>
+      props.isDarkTheme
+        ? `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.secondary.light})`
+        : `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+  },
+}));

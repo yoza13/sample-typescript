@@ -15,6 +15,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/Yash.ico",
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
@@ -42,8 +43,34 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.png|svg|jpg|gif$/,
+        test: /\.png|jpg|gif$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.(pdf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.docx$/,
+        use: [
+          {
+            loader: "docx-loader",
+            options: {
+              removeLinks: true,
+            },
+          },
+        ],
       },
     ],
   },
