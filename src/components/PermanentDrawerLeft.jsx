@@ -52,6 +52,10 @@ function ResponsiveDrawer(props) {
           title: "Calculator",
           page: "/projects/calculator",
         },
+        {
+          title: "To Do",
+          page: "/projects/todo",
+        },
       ],
     },
     {

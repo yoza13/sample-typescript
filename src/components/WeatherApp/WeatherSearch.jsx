@@ -35,7 +35,6 @@ export default function WeatherSearch() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.cod === 200) {
           setIsError(false);
           setTemperature(result);

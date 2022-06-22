@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createTheme, Fab, ThemeProvider } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { ErrorBoundary } from "react-error-boundary";
 import { AppContextProvider } from "./ApplicationContext";
@@ -14,6 +14,7 @@ import Calculator from "./components/Calculator/Calculator";
 import PermanentDrawerLeft from "./components/PermanentDrawerLeft";
 import ErrorFallback from "./components/ErrorFallback";
 import Footer from "./components/Footer";
+import ToDoApp from "./components/ToDo/ToDoApp";
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -67,6 +68,7 @@ function App() {
                   path="/projects/calculator"
                   element={<Calculator />}
                 ></Route>
+                <Route path="/projects/todo" element={<ToDoApp />}></Route>
               </Routes>
               <Footer />
             </Router>
