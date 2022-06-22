@@ -7,7 +7,7 @@
     "start": "webpack serve  --hot --open",
     "build": "webpack --config webpack.config.js --mode production",
     "test": "jest",
-    "eslint": "eslint ."
+    "eslint": "eslint src/**"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "apexcharts": "^3.35.3",
     "dot-env": "0.0.1",
     "dotenv": "^16.0.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
     "react-bar-chart": "^0.1.2",

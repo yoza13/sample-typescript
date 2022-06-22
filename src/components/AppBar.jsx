@@ -8,6 +8,7 @@ import Yash from "../Yash.jpg";
 import AppContext from "../ApplicationContext";
 import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import { func } from "prop-types";
 
 export default function ButtonAppBar({ handleDrawerToggle }) {
   const { isDarkTheme, setIsDarkTheme } = useContext(AppContext);
@@ -48,3 +49,7 @@ export default function ButtonAppBar({ handleDrawerToggle }) {
     </Box>
   );
 }
+
+ButtonAppBar.propTypes = {
+  handleDrawerToggle: func,
+};

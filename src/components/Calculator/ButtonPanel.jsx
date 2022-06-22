@@ -1,5 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { Box } from "@mui/system";
+import { arrayOf, func, string } from "prop-types";
 import React from "react";
 import { useContext } from "react";
 import AppContext from "../../ApplicationContext";
@@ -182,3 +183,12 @@ export default function ButtonPanel({
     </Box>
   );
 }
+
+ButtonPanel.propTypes = {
+  setValue: func.isRequired,
+  value: string.isRequired,
+  addedValues: arrayOf(string).isRequired,
+  setAddedValues: func.isRequired,
+  operator: string.isRequired,
+  setOperator: func.isRequired,
+};

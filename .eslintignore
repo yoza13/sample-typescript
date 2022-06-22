@@ -3,3 +3,14 @@ node_modules/
 webpack.config.js
 .eslintrc.js
 .env
+
+*.ico
+*.jpg
+*.png
+
+*.docx
+*.pdf
+
+*.json
+
+*index.html
