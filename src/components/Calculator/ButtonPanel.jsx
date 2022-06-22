@@ -6,7 +6,7 @@ import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 
 export default function ButtonPanel({
-  buttonClick,
+  setValue,
   value,
   addedValues,
   setAddedValues,
@@ -32,10 +32,10 @@ export default function ButtonPanel({
     }
     setOperator(operation);
     if (operation === "=") {
-      buttonClick(result);
+      setValue(result);
     } else {
       setAddedValues(result !== undefined ? [result] : updatedValues);
-      buttonClick(
+      setValue(
         result !== undefined ? `${result}${operation}` : `${value}${operation}`
       );
     }
@@ -47,7 +47,7 @@ export default function ButtonPanel({
           className={classes.buttons}
           onClick={() => {
             setAddedValues([]);
-            buttonClick("0");
+            setValue("0");
             setOperator("");
           }}
         >
@@ -56,7 +56,7 @@ export default function ButtonPanel({
         <Button
           className={classes.buttons}
           onClick={() => {
-            buttonClick(
+            setValue(
               [-1, -0].includes(Math.sign(value))
                 ? Math.abs(value)
                 : Math.abs(value) * -1
@@ -69,7 +69,7 @@ export default function ButtonPanel({
           className={classes.buttons}
           onClick={() => {
             const percentValue = value / 100;
-            buttonClick(percentValue);
+            setValue(percentValue);
           }}
         >
           %
@@ -84,19 +84,19 @@ export default function ButtonPanel({
       <Stack direction="row" className={classes.buttonStack}>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}7`)}
+          onClick={() => setValue(`${value}7`)}
         >
           7
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}8`)}
+          onClick={() => setValue(`${value}8`)}
         >
           8
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}9`)}
+          onClick={() => setValue(`${value}9`)}
         >
           9
         </Button>
@@ -110,19 +110,19 @@ export default function ButtonPanel({
       <Stack direction="row" className={classes.buttonStack}>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}4`)}
+          onClick={() => setValue(`${value}4`)}
         >
           4
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}5`)}
+          onClick={() => setValue(`${value}5`)}
         >
           5
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}6`)}
+          onClick={() => setValue(`${value}6`)}
         >
           6
         </Button>
@@ -136,19 +136,19 @@ export default function ButtonPanel({
       <Stack direction="row" className={classes.buttonStack}>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}1`)}
+          onClick={() => setValue(`${value}1`)}
         >
           1
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}2`)}
+          onClick={() => setValue(`${value}2`)}
         >
           2
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}3`)}
+          onClick={() => setValue(`${value}3`)}
         >
           3
         </Button>
@@ -162,13 +162,13 @@ export default function ButtonPanel({
       <Stack direction="row" className={classes.buttonStack}>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}0`)}
+          onClick={() => setValue(`${value}0`)}
         >
           0
         </Button>
         <Button
           className={classes.buttons}
-          onClick={() => buttonClick(`${value}.`)}
+          onClick={() => setValue(`${value}.`)}
         >
           .
         </Button>

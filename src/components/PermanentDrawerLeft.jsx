@@ -85,7 +85,10 @@ function ResponsiveDrawer(props) {
                   <ListItemButton
                     key={item + index}
                     disablePadding
-                    onClick={() => navigate(item.page)}
+                    onClick={() => {
+                      allowClose && handleDrawerToggle();
+                      navigate(item.page);
+                    }}
                   >
                     <ListItemText primary={item.title} />
                   </ListItemButton>
@@ -120,7 +123,10 @@ function ResponsiveDrawer(props) {
                           >
                             <ListItemButton
                               sx={{ pl: 4 }}
-                              onClick={() => navigate(projects.page)}
+                              onClick={() => {
+                                allowClose && handleDrawerToggle();
+                                navigate(projects.page);
+                              }}
                             >
                               <ListItemText primary={projects.title} />
                             </ListItemButton>

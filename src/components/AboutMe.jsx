@@ -1,16 +1,15 @@
-import React, { useContext, useState } from "react";
-import BarChart from "react-bar-chart";
+import React, { Fragment, useContext, useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import {
   Box,
-  Collapse,
   Container,
   Divider,
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   Slide,
   Stack,
@@ -20,24 +19,33 @@ import { useStyles } from "../useStyles";
 import Resume_Pdf from "../Yash_Oza_Resume.pdf";
 import Resume_Doc from "../Yash_Oza_Resume.docx";
 import AppContext from "../ApplicationContext";
+import summary from "../content/summary.json";
+import ReactApexChart from "react-apexcharts";
 
 export default function AboutMe() {
-  const data = [
-    { text: "ReactJS", value: 450 },
-    { text: "Redux", value: 435 },
-    { text: "Gatsby", value: 400 },
-    { text: "GraphQL", value: 350 },
-    { text: "Node", value: 300 },
-    { text: "Express.js", value: 300 },
-    { text: "AWS", value: 250 },
-    { text: ".Net", value: 200 },
-    { text: "Scipting", value: 200 },
-    { text: "Jenkins", value: 350 },
+  const languagesForChart = [
+    "Javascript",
+    "React",
+    "Angular",
+    "Redux",
+    "Node",
+    "JAVA",
+    "HTML",
+    "CSS",
+    "Typescript",
+    ".NET",
+    "AWS",
+    "Jenkins",
+    "WebdriverIO",
+    "Cucumber",
+  ];
+  const dataForChart = [
+    1380, 1240, 600, 1240, 1380, 720, 1380, 1380, 1040, 550, 550, 843, 1380,
+    1145,
   ];
   const [showSummary, setShowSummary] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const { isDarkTheme } = useContext(AppContext);
-  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
   const classes = useStyles({ isDarkTheme });
   return (
     <Container className={classes.appContainer}>
@@ -58,117 +66,94 @@ export default function AboutMe() {
         <Stack>
           <List>
             <ListItemButton onClick={() => setShowSummary(!showSummary)}>
+              <ListItemIcon>
+                {showSummary ? (
+                  <MenuOpenIcon fontSize="large" />
+                ) : (
+                  <MenuIcon fontSize="large" />
+                )}
+              </ListItemIcon>
               <Typography
                 variant="h5"
                 align="center"
                 gutterBottom={true}
                 textAlign="center"
               >
-                {showSummary ? <MenuOpenIcon /> : <MenuIcon />}
                 Summary
               </Typography>
             </ListItemButton>
             {showSummary && (
-              <>
-                <List
-                  component="ul"
-                  aria-label="summary"
-                  className={classes.listStyleDisc}
-                >
-                  <ListItem button={false}>
-                    <Slide direction="left" in={true}>
-                      <ListItemText
-                        primary="Seven Years of experience as Web UI Developer/Technical
-          Lead/Seni>or Software Developer."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false} divider>
-                    <Slide direction="right" in={true}>
-                      <ListItemText
-                        primary="Worked on Web based user interface which was created using
-          Node/React/Redux."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false} divider>
-                    <Slide direction="left" in={true}>
-                      <ListItemText
-                        primary="Created/developed product design, design objectives, Usability
-          Objective, sketches, user flow diagrams, wireframes for external
-          (web) and internal (client/server) applications, mobile application,
-          test web sites."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false}>
-                    <Slide direction="right" in={true}>
-                      <ListItemText
-                        primary="Worked directly with cross-functional teams of Business
-          Stakeholders, Analysts, Architects, Developers, Web/Graphic
-          designers, Copywriters, Product Managers, Visual Designers, and
-          Technical Architect, end users to determine user interface needs and
-          implement innovative UI applications."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false}>
-                    <Slide direction="left" in={true}>
-                      <ListItemText
-                        primary="Worked on Web based user interface which was created using
-              Node/React/Redux."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false}>
-                    <Slide direction="right" in={true}>
-                      <ListItemText
-                        primary="Worked on Web based user interface which was created using
-              Node/React/Redux."
-                      />
-                    </Slide>
-                  </ListItem>
-                  <Divider className={classes.dividerStyle} />
-                  <ListItem button={false}>
-                    <Slide direction="left" in={true}>
-                      <ListItemText
-                        primary="Worked on Web based user interface which was created using
-              Node/React/Redux."
-                      />
-                    </Slide>
-                  </ListItem>
-                </List>
-                <Typography>
-                  <LocationOnOutlinedIcon /> Edison,NJ
-                </Typography>
-              </>
+              <List
+                component="ul"
+                aria-label="summary"
+                className={classes.listStyleDisc}
+              >
+                {summary?.summary &&
+                  summary?.summary.map((sum, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <ListItem button={false}>
+                          <Slide
+                            direction={index % 2 === 0 ? "left" : "right"}
+                            in={true}
+                          >
+                            <ListItemText primary={sum} />
+                          </Slide>
+                        </ListItem>
+                        <Divider className={classes.dividerStyle} />
+                      </Fragment>
+                    );
+                  })}
+                <ListItem>
+                  <LocationOnOutlinedIcon /> <Typography>Edison, NJ</Typography>
+                </ListItem>
+              </List>
             )}
             <ListItemButton onClick={() => setShowSkills(!showSkills)}>
+              <ListItemIcon>
+                {showSummary ? (
+                  <MenuOpenIcon fontSize="large" />
+                ) : (
+                  <MenuIcon fontSize="large" />
+                )}
+              </ListItemIcon>
               <Typography variant="h5" align="center" gutterBottom={true}>
-                {showSkills ? <MenuOpenIcon /> : <MenuIcon />}
                 Skills
               </Typography>
             </ListItemButton>
             {showSkills && (
-              <Collapse orientation="horizontal" in={true}>
-                <BarChart
-                  colorBars
-                  ylabel="Quantity"
-                  width={700}
-                  height={400}
-                  margin={margin}
-                  data={data}
-                />
-              </Collapse>
+              <ReactApexChart
+                options={{
+                  chart: {
+                    type: "bar",
+                    height: 350,
+                  },
+                  plotOptions: {
+                    bar: {
+                      borderRadius: 4,
+                      horizontal: true,
+                    },
+                  },
+                  dataLabels: {
+                    enabled: false,
+                  },
+                  xaxis: {
+                    categories: languagesForChart,
+                  },
+                }}
+                series={[
+                  {
+                    data: dataForChart,
+                  },
+                ]}
+                type="bar"
+                height={350}
+              />
             )}
           </List>
         </Stack>
       </Box>
+
       <Stack className={classes.downloadBlock}>
         <a
           download={Resume_Pdf}

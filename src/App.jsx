@@ -11,6 +11,8 @@ import WeatherSearch from "./components/WeatherApp/WeatherSearch";
 import Calculator from "./components/Calculator/Calculator";
 import PermanentDrawerLeft from "./components/PermanentDrawerLeft";
 import Footer from "./components/Footer";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -42,6 +44,7 @@ function App() {
             <ButtonAppBar />
             <PermanentDrawerLeft />
             <Routes>
+              <Route path="/" element={<Home />}></Route>
               <Route path="/home" element={<Home />}></Route>
               <Route path="/about-me" element={<AboutMe />}></Route>
               <Route path="/experience" element={<Experience />}></Route>

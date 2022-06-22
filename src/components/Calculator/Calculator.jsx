@@ -23,7 +23,7 @@ export default function Calculator() {
               <input className={classes.displayField} value={value} />
             </Box>
             <ButtonPanel
-              buttonClick={setValue}
+              setValue={setValue}
               value={value}
               addedValues={addedValues}
               setAddedValues={setAddedValues}

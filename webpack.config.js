@@ -7,6 +7,9 @@ dotenv.config();
 
 module.exports = {
   mode: "development",
+  devServer: {
+    historyApiFallback: true,
+  },
   entry: "./src/index.js",
   output: {
     filename: "bundle.[hash].js",
