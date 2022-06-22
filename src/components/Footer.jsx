@@ -1,6 +1,6 @@
+import React, { useContext } from "react";
 import { Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useContext } from "react";
 import AppContext from "../ApplicationContext";
 import { useStyles } from "../useStyles";
 

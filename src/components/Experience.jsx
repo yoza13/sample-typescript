@@ -4,16 +4,11 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Collapse from "@mui/material/Collapse";
-import Travelers from "../travelers.png";
-import Amex from "../american-express.png";
-import adp from "../adp.png";
-import Apple from "../apple.png";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import {
   Accordion,
@@ -33,6 +28,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import Apple from "../apple.png";
+import adp from "../adp.png";
+import Amex from "../american-express.png";
+import Travelers from "../travelers.png";
 import expData from "../content/experience.json";
 import { useStyles } from "../useStyles";
 import AppContext from "../ApplicationContext";
@@ -76,7 +75,7 @@ export default function Experience() {
             return (
               <Accordion key={index + exp.header}>
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMore />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import Yash from "../Yash.jpg";
 import Typewriter from "typewriter-effect";
+import { Avatar, Box, Container, Stack, Typography } from "@mui/material";
+import Yash from "../Yash.jpg";
 import { useStyles } from "../useStyles";
 import AppContext from "../ApplicationContext";
-import { Avatar, Box, Container, Stack, Typography } from "@mui/material";
 
 export default function Home() {
   const { isDarkTheme } = useContext(AppContext);

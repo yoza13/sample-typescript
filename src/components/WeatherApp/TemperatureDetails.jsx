@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { Box, Card, Container, Stack, Switch, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 
-import React, { useState } from "react";
 
 const TemperatureDetails = (tempDetails) => {
   const [tempUnit, setTempUnit] = useState("C");

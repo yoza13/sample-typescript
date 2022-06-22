@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import {
   Box,
+  Chip,
   Container,
   Divider,
   List,
@@ -15,38 +16,21 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import ReactApexChart from "react-apexcharts";
 import { useStyles } from "../useStyles";
 import Resume_Pdf from "../Yash_Oza_Resume.pdf";
 import Resume_Doc from "../Yash_Oza_Resume.docx";
 import AppContext from "../ApplicationContext";
-import summary from "../content/summary.json";
-import ReactApexChart from "react-apexcharts";
+import AboutMeDetails from "../content/about-me.json";
 
 export default function AboutMe() {
-  const languagesForChart = [
-    "Javascript",
-    "React",
-    "Angular",
-    "Redux",
-    "Node",
-    "JAVA",
-    "HTML",
-    "CSS",
-    "Typescript",
-    ".NET",
-    "AWS",
-    "Jenkins",
-    "WebdriverIO",
-    "Cucumber",
-  ];
-  const dataForChart = [
-    1380, 1240, 600, 1240, 1380, 720, 1380, 1380, 1040, 550, 550, 843, 1380,
-    1145,
-  ];
   const [showSummary, setShowSummary] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
+  const [showCertifications, setShowCertifications] = useState(false);
   const { isDarkTheme } = useContext(AppContext);
   const classes = useStyles({ isDarkTheme });
+  const languagesForChart = AboutMeDetails.skills.map((skill) => skill.title);
+  const dataForChart = AboutMeDetails.skills.map((skill) => skill.data);
   return (
     <Container className={classes.appContainer}>
       <Box className={classes.contentBox}>
@@ -88,8 +72,8 @@ export default function AboutMe() {
                 aria-label="summary"
                 className={classes.listStyleDisc}
               >
-                {summary?.summary &&
-                  summary?.summary.map((sum, index) => {
+                {AboutMeDetails?.summary &&
+                  AboutMeDetails?.summary.map((sum, index) => {
                     return (
                       <Fragment key={index}>
                         <ListItem button={false}>
@@ -150,10 +134,59 @@ export default function AboutMe() {
                 height={350}
               />
             )}
+            <ListItemButton
+              onClick={() => setShowCertifications(!showCertifications)}
+            >
+              <ListItemIcon>
+                {showCertifications ? (
+                  <MenuOpenIcon fontSize="large" />
+                ) : (
+                  <MenuIcon fontSize="large" />
+                )}
+              </ListItemIcon>
+              <Typography variant="h5" align="center" gutterBottom={true}>
+                Licenses and Certification
+              </Typography>
+            </ListItemButton>
+            {showCertifications && (
+              <List
+                component="ul"
+                aria-label="summary"
+                className={classes.listStyleDisc}
+              >
+                {AboutMeDetails?.certifications &&
+                  AboutMeDetails?.certifications.map((cert, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <ListItem button={false} sx={{ ml: 3, mb: 3 }}>
+                          <ListItemIcon>
+                            <img src={cert.icon} alt={cert.alt}></img>
+                          </ListItemIcon>
+                          <Stack sx={{ ml: 3 }}>
+                            <ListItemText
+                              primary={cert.title}
+                              secondary={cert.caption}
+                            />
+                            <ListItemText secondary={cert.duration} />
+                            <Chip
+                              label="Show Certification"
+                              component="a"
+                              href={cert.creds}
+                              variant="outlined"
+                              clickable
+                              target="_blank"
+                            />
+                          </Stack>
+                        </ListItem>
+                        <Divider className={classes.dividerStyle} />
+                      </Fragment>
+                    );
+                  })}
+              </List>
+            )}
           </List>
         </Stack>
       </Box>
-
       <Stack className={classes.downloadBlock}>
         <a
           download={Resume_Pdf}

@@ -4,11 +4,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Avatar, IconButton, Switch } from "@mui/material";
-import Yash from "../Yash.jpg";
-import AppContext from "../ApplicationContext";
 import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import { func } from "prop-types";
+import AppContext from "../ApplicationContext";
+import Yash from "../Yash.jpg";
 
 export default function ButtonAppBar({ handleDrawerToggle }) {
   const { isDarkTheme, setIsDarkTheme } = useContext(AppContext);

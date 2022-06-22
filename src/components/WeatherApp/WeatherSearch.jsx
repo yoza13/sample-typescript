@@ -1,3 +1,4 @@
+import React, { useContext, useState } from "react";
 import {
   Alert,
   AlertTitle,
@@ -9,12 +10,11 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
 import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 import TemperatureDetails from "./TemperatureDetails";
 
-export const WeatherSearch = () => {
+export default function WeatherSearch() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
@@ -122,6 +122,4 @@ export const WeatherSearch = () => {
       </Box>
     </Container>
   );
-};
-
-export default WeatherSearch;
+}

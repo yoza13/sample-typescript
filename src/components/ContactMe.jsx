@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   Box,
   Container,
@@ -11,7 +12,6 @@ import {
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import React, { useContext } from "react";
 import { useStyles } from "../useStyles";
 import AppContext from "../ApplicationContext";
 
