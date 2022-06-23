@@ -22,30 +22,29 @@ export default function WeatherSearch() {
   const [isError, setIsError] = useState(false);
   const { isDarkTheme } = useContext(AppContext);
   const classes = useStyles({ isDarkTheme });
-  const api_key = "356ff24d62590793f00f5de022e88895";
-  const callApi = () => {
-    let queryParam = [];
-    if (city) queryParam.push(city);
-    if (state) queryParam.push(state);
-    if (zip) queryParam.push(zip);
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${queryParam.join(
-        ","
-      )}&appid=${api_key}&&units=metric`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.cod === 200) {
-          setIsError(false);
-          setTemperature(result);
-        } else {
-          setIsError(true);
-          setTemperature({});
-        }
-        setCity("");
-        setState("");
-        setZip("");
-      });
+  const callApi = async () => {
+    const result = await fetch("http://localhost:5000/api/weather-search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        state,
+        city,
+        zip,
+      }),
+    });
+    const { weatherData } = await result.json();
+    if (weatherData.cod === 200) {
+      setIsError(false);
+      setTemperature(weatherData);
+    } else {
+      setIsError(true);
+      setTemperature({});
+    }
+    setCity("");
+    setState("");
+    setZip("");
   };
   const isButtonDisabled = !(
     city.length > 0 ||
