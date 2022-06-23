@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "Photo Seach Web Application",
   "main": "index.js",
-  "proxy": "http://localhost:5000/",
   "scripts": {
-    "start": "webpack serve  --hot --open",
     "build": "webpack --config webpack.config.js --mode production",
     "test": "jest",
     "eslint": "eslint src/**",
-    "client": "npm run start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"webpack serve  --hot --open\""
   },
   "pre-commit": [
     "eslint"
