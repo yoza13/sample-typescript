@@ -6,52 +6,60 @@ import {
   Button,
   Card,
   CardHeader,
+  CircularProgress,
   Container,
   Stack,
   TextField,
 } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 import TemperatureDetails from "./TemperatureDetails";
 
 export default function WeatherSearch() {
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
   const [temperature, setTemperature] = useState({});
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { isDarkTheme } = useContext(AppContext);
   const classes = useStyles({ isDarkTheme });
-  const api_key = "356ff24d62590793f00f5de022e88895";
-  const callApi = () => {
-    let queryParam = [];
-    if (city) queryParam.push(city);
-    if (state) queryParam.push(state);
-    if (zip) queryParam.push(zip);
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${queryParam.join(
-        ","
-      )}&appid=${api_key}&&units=metric`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.cod === 200) {
-          setIsError(false);
-          setTemperature(result);
-        } else {
-          setIsError(true);
-          setTemperature({});
-        }
-        setCity("");
-        setState("");
-        setZip("");
-      });
+  const callApi = async (data) => {
+    const { state, city, zip } = data;
+    setIsLoading(true);
+    const result = await fetch(
+      `${
+        window.location.hostname === "localhost"
+          ? "http://localhost:5000"
+          : "https://www.yashvoza.com"
+      }/api/weather-search`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          state,
+          city,
+          zip,
+        }),
+      }
+    );
+    const { weatherData } = await result.json();
+    setIsLoading(false);
+    if (weatherData.cod === 200) {
+      setIsError(false);
+      setTemperature(weatherData);
+    } else {
+      setIsError(true);
+      setTemperature({});
+    }
+    reset();
   };
-  const isButtonDisabled = !(
-    city.length > 0 ||
-    state.length > 0 ||
-    zip.length > 0
-  );
 
   return (
     <Container className={classes.appContainer}>
@@ -61,54 +69,82 @@ export default function WeatherSearch() {
             title="Weather App"
             subheader="Enter any of the below details for getting the temperature in celsious to the entered place"
           />
-          <Box
-            component="form"
-            autoComplete="off"
-            sx={{ width: "50%", margin: "auto" }}
-          >
-            <Stack direction="column">
-              <TextField
-                required
-                id="outlined-required"
-                label="City"
-                placeholder="Enter City"
-                onChange={(event) => {
-                  setCity(event.target.value);
-                }}
-                sx={{ marginBottom: "1rem" }}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="State"
-                placeholder="Enter State"
-                onChange={(event) => {
-                  setState(event.target.value);
-                }}
-                sx={{ marginBottom: "1rem" }}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Zip"
-                placeholder="Enter Zip"
-                onChange={(event) => {
-                  setZip(event.target.value);
-                }}
-                sx={{ marginBottom: "1rem" }}
-              />
-            </Stack>
-            <Button
-              type="submit"
-              onClick={callApi}
-              disabled={isButtonDisabled}
-              size="large"
-              sx={{ margin: "auto", width: "100%" }}
-            >
-              Get Details
-            </Button>
+          <Box autoComplete="off" sx={{ width: "50%", margin: "auto" }}>
+            <form onSubmit={handleSubmit(callApi)}>
+              <Stack direction="column">
+                <Controller
+                  name="city"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field }) => {
+                    return (
+                      <TextField
+                        {...field}
+                        error={errors?.city}
+                        id="outlined-required"
+                        label="City"
+                        placeholder="Enter City"
+                        sx={{ marginBottom: "1rem" }}
+                        helperText={errors?.city && "Enter City"}
+                      />
+                    );
+                  }}
+                ></Controller>
+                <Controller
+                  name="state"
+                  control={control}
+                  render={({ field }) => {
+                    return (
+                      <TextField
+                        {...field}
+                        id="outlined-required"
+                        label="State"
+                        placeholder="Enter State"
+                        sx={{ marginBottom: "1rem" }}
+                        helperText="Enter state only for US"
+                      />
+                    );
+                  }}
+                ></Controller>
+                <Controller
+                  name="zip"
+                  control={control}
+                  render={({ field }) => {
+                    return (
+                      <TextField
+                        {...field}
+                        id="outlined-required"
+                        label="Zip"
+                        placeholder="Enter Zip"
+                        sx={{ marginBottom: "1rem" }}
+                        helperText="Enter zip only for US"
+                      />
+                    );
+                  }}
+                ></Controller>
+              </Stack>
+              <Button
+                type="submit"
+                size="large"
+                sx={{ margin: "auto", width: "100%" }}
+              >
+                Get Details
+              </Button>
+            </form>
           </Box>
         </Card>
+
+        {isLoading && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingBottom: "20px",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        )}
         {Object.keys(temperature) && Object.keys(temperature).length > 0 && (
           <TemperatureDetails {...temperature} />
         )}
