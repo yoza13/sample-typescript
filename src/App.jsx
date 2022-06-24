@@ -9,7 +9,8 @@ import Home from "./components/Home";
 import AboutMe from "./components/AboutMe";
 import Experience from "./components/Experience";
 import ContactMe from "./components/ContactMe";
-import WeatherSearch from "./components/WeatherApp/WeatherSearch";
+// import WeatherSearch from "./components/WeatherApp/WeatherSearch";
+import WeatherSearchUI from "./components/WeatherApp/WeatherSearchUI";
 import Calculator from "./components/Calculator/Calculator";
 import PermanentDrawerLeft from "./components/PermanentDrawerLeft";
 import ErrorFallback from "./components/ErrorFallback";
@@ -60,9 +61,13 @@ function App() {
                 <Route path="/about-me" element={<AboutMe />}></Route>
                 <Route path="/experience" element={<Experience />}></Route>
                 <Route path="/contact-me" element={<ContactMe />}></Route>
-                <Route
+                {/* <Route
                   path="/projects/weather-app"
                   element={<WeatherSearch />}
+                ></Route> */}
+                <Route
+                  path="/projects/weather-app"
+                  element={<WeatherSearchUI />}
                 ></Route>
                 <Route
                   path="/projects/calculator"
