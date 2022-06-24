@@ -15,5 +15,8 @@ app.use(
 app.post("/api/weather-search", (req, res) => {
   WeatherSearch(req, res);
 });
+app.get("/api/test-api", (req, res) => {
+  res.send({ hi: "This is a Test" });
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
