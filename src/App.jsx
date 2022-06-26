@@ -16,6 +16,7 @@ import PermanentDrawerLeft from "./components/PermanentDrawerLeft";
 import ErrorFallback from "./components/ErrorFallback";
 import Footer from "./components/Footer";
 import ToDoApp from "./components/ToDo/ToDoApp";
+import Minesweeper from "./components/MineSweeper/Game";
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -74,6 +75,10 @@ function App() {
                   element={<Calculator />}
                 ></Route>
                 <Route path="/projects/todo" element={<ToDoApp />}></Route>
+                <Route
+                  path="/projects/mine-sweeper"
+                  element={<Minesweeper />}
+                ></Route>
               </Routes>
               <Footer />
             </Router>

@@ -56,6 +56,10 @@ function ResponsiveDrawer(props) {
           title: "To Do",
           page: "/projects/todo",
         },
+        {
+          title: "Mine-Sweeper (Single Player Game)",
+          page: "/projects/mine-sweeper",
+        },
       ],
     },
     {
