@@ -87,7 +87,6 @@ export const useStyles = makeStyles(() => ({
   dividerStyle: {
     borderColor: "inherit",
     margin: "auto",
-    width: "60%",
     marginBottom: "1rem",
   },
   experienceAccordionStack: {
