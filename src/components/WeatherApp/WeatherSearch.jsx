@@ -63,98 +63,96 @@ export default function WeatherSearch() {
 
   return (
     <Container className={classes.appContainer}>
-      <Box className={classes.contentBox}>
-        <Card sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-          <CardHeader
-            title="Weather App"
-            subheader="Enter any of the below details for getting the temperature in celsious to the entered place"
-          />
-          <Box autoComplete="off" sx={{ width: "50%", margin: "auto" }}>
-            <form onSubmit={handleSubmit(callApi)}>
-              <Stack direction="column">
-                <Controller
-                  name="city"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => {
-                    return (
-                      <TextField
-                        {...field}
-                        error={errors?.city}
-                        id="outlined-required"
-                        label="City"
-                        placeholder="Enter City"
-                        sx={{ marginBottom: "1rem" }}
-                        helperText={errors?.city && "Enter City"}
-                      />
-                    );
-                  }}
-                ></Controller>
-                <Controller
-                  name="state"
-                  control={control}
-                  render={({ field }) => {
-                    return (
-                      <TextField
-                        {...field}
-                        id="outlined-required"
-                        label="State"
-                        placeholder="Enter State"
-                        sx={{ marginBottom: "1rem" }}
-                        helperText="Enter state only for US"
-                      />
-                    );
-                  }}
-                ></Controller>
-                <Controller
-                  name="zip"
-                  control={control}
-                  render={({ field }) => {
-                    return (
-                      <TextField
-                        {...field}
-                        id="outlined-required"
-                        label="Zip"
-                        placeholder="Enter Zip"
-                        sx={{ marginBottom: "1rem" }}
-                        helperText="Enter zip only for US"
-                      />
-                    );
-                  }}
-                ></Controller>
-              </Stack>
-              <Button
-                type="submit"
-                size="large"
-                sx={{ margin: "auto", width: "100%" }}
-              >
-                Get Details
-              </Button>
-            </form>
-          </Box>
-        </Card>
+      <Card raised={true} className={classes.contentBox}>
+        <CardHeader
+          title="Weather App"
+          subheader="Enter any of the below details for getting the temperature in celsious to the entered place"
+        />
+        <Box autoComplete="off" sx={{ width: "50%", margin: "auto" }}>
+          <form onSubmit={handleSubmit(callApi)}>
+            <Stack direction="column">
+              <Controller
+                name="city"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => {
+                  return (
+                    <TextField
+                      {...field}
+                      error={errors?.city}
+                      id="outlined-required"
+                      label="City"
+                      placeholder="Enter City"
+                      sx={{ marginBottom: "1rem" }}
+                      helperText={errors?.city && "Enter City"}
+                    />
+                  );
+                }}
+              ></Controller>
+              <Controller
+                name="state"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <TextField
+                      {...field}
+                      id="outlined-required"
+                      label="State"
+                      placeholder="Enter State"
+                      sx={{ marginBottom: "1rem" }}
+                      helperText="Enter state only for US"
+                    />
+                  );
+                }}
+              ></Controller>
+              <Controller
+                name="zip"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <TextField
+                      {...field}
+                      id="outlined-required"
+                      label="Zip"
+                      placeholder="Enter Zip"
+                      sx={{ marginBottom: "1rem" }}
+                      helperText="Enter zip only for US"
+                    />
+                  );
+                }}
+              ></Controller>
+            </Stack>
+            <Button
+              type="submit"
+              size="large"
+              sx={{ margin: "auto", width: "100%" }}
+            >
+              Get Details
+            </Button>
+          </form>
+        </Box>
+      </Card>
 
-        {isLoading && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingBottom: "20px",
-            }}
-          >
-            <CircularProgress />
-          </div>
-        )}
-        {Object.keys(temperature) && Object.keys(temperature).length > 0 && (
-          <TemperatureDetails {...temperature} />
-        )}
-        {isError && (
-          <Alert severity="error">
-            <AlertTitle>Error</AlertTitle>
-            Please try again
-          </Alert>
-        )}
-      </Box>
+      {isLoading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "20px",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      )}
+      {Object.keys(temperature) && Object.keys(temperature).length > 0 && (
+        <TemperatureDetails {...temperature} />
+      )}
+      {isError && (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          Please try again
+        </Alert>
+      )}
     </Container>
   );
 }

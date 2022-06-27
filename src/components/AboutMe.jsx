@@ -3,7 +3,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import {
-  Box,
+  Card,
   Chip,
   Container,
   Divider,
@@ -33,7 +33,7 @@ export default function AboutMe() {
   const dataForChart = AboutMeDetails.skills.map((skill) => skill.data);
   return (
     <Container className={classes.appContainer}>
-      <Box className={classes.contentBox}>
+      <Card raised={true} className={classes.contentBox}>
         <Slide direction="left" in={true}>
           <Typography
             variant="h5"
@@ -186,7 +186,7 @@ export default function AboutMe() {
             )}
           </List>
         </Stack>
-      </Box>
+      </Card>
       <Stack className={classes.downloadBlock}>
         <a
           download={Resume_Pdf}

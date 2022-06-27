@@ -14,7 +14,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Container,
   Divider,
   Link,
@@ -56,7 +55,7 @@ export default function Experience() {
 
   return (
     <Container className={classes.appContainer}>
-      <Box className={classes.contentBox}>
+      <Card raised={true} className={classes.contentBox}>
         <Slide direction="left" in={true}>
           <Typography
             variant="h5"
@@ -243,7 +242,7 @@ export default function Experience() {
           Further in-depth experience can be found on my &nbsp;
           <Link href="https://www.linkedin.com/in/yash-oza/">Linkedin</Link>
         </Typography>
-      </Box>
+      </Card>
     </Container>
   );
 }

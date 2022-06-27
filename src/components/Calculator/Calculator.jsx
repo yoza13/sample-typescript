@@ -12,27 +12,25 @@ export default function Calculator() {
   const [operator, setOperator] = useState();
   return (
     <Container className={classes.appContainer}>
-      <Box className={classes.contentBox}>
-        <Card>
-          <CardHeader
-            title="Calculator"
-            subheader="Click the button and perform desired calculation"
+      <Card raised={true} ox className={classes.contentBox}>
+        <CardHeader
+          title="Calculator"
+          subheader="Click the button and perform desired calculation"
+        />
+        <Stack className={classes.calculatorBox}>
+          <Box>
+            <input className={classes.displayField} value={value} />
+          </Box>
+          <ButtonPanel
+            setValue={setValue}
+            value={value}
+            addedValues={addedValues}
+            setAddedValues={setAddedValues}
+            operator={operator}
+            setOperator={setOperator}
           />
-          <Stack className={classes.calculatorBox}>
-            <Box>
-              <input className={classes.displayField} value={value} />
-            </Box>
-            <ButtonPanel
-              setValue={setValue}
-              value={value}
-              addedValues={addedValues}
-              setAddedValues={setAddedValues}
-              operator={operator}
-              setOperator={setOperator}
-            />
-          </Stack>
-        </Card>
-      </Box>
+        </Stack>
+      </Card>
     </Container>
   );
 }
