@@ -19,8 +19,6 @@ import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import { func } from "prop-types";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AppContext from "../ApplicationContext";
 import Yash from "../Yash.jpg";
@@ -30,7 +28,6 @@ import ScrollTop from "./ScrollTop";
 export default function ButtonAppBar() {
   const { isDarkTheme, setIsDarkTheme } = useContext(AppContext);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [open, setOpen] = useState(true);
   const classes = useStyles();
   const navigate = useNavigate();
   const leftNavItems = [
@@ -96,23 +93,10 @@ export default function ButtonAppBar() {
                 </ListItem>
               ) : (
                 <>
-                  <ListItemButton
-                    key={item + index}
-                    disablePadding
-                    onClick={() => setOpen(!open)}
-                  >
+                  <ListItemButton key={item + index} disablePadding>
                     <ListItemText primary={item.title} sx={{ pl: "16px" }} />
-                    {open ? (
-                      <ExpandLess
-                        color={isDarkTheme ? "secondary" : "primary"}
-                      />
-                    ) : (
-                      <ExpandMore
-                        color={isDarkTheme ? "secondary" : "primary"}
-                      />
-                    )}
                   </ListItemButton>
-                  <Collapse in={open} timeout="auto" unmountOnExit>
+                  <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="ul" className={classes.listStyleDisc}>
                       {item?.list.map((projects, index) => {
                         return (
@@ -157,7 +141,9 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           &nbsp;&nbsp;&nbsp;
-          <Avatar alt="Yash Oza" src={Yash} />
+          <IconButton onClick={() => navigate("/home")}>
+            <Avatar alt="Yash Oza" src={Yash} />
+          </IconButton>
           &nbsp; &nbsp; &nbsp;
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Yash Oza

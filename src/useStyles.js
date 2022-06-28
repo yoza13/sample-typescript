@@ -2,9 +2,9 @@ import { createTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const theme = createTheme();
-console.log(theme);
+console.log(theme.breakpoints.up("sm"));
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme) => ({
   drawerListItem: {
     color: "inherit",
   },
@@ -92,15 +92,21 @@ export const useStyles = makeStyles(() => ({
   experienceAccordionStack: {
     marginBottom: "1rem",
     [theme.breakpoints.up("md")]: {
-      display: "none",
+      display: "none !important",
     },
+    "& .accordion": { padding: "0 1rem" },
   },
   experienceCardsStack: {
     flexWrap: "wrap",
     margin: "0 auto",
     marginBottom: "1rem",
     [theme.breakpoints.down("md")]: {
-      display: "none",
+      display: "none !important",
+    },
+  },
+  gameAlert: {
+    [theme.breakpoints.up("md")]: {
+      display: "none !important",
     },
   },
   downloadBlock: {

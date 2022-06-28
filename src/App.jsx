@@ -15,6 +15,7 @@ import ErrorFallback from "./components/ErrorFallback";
 import Footer from "./components/Footer";
 import ToDoApp from "./components/ToDo/ToDoApp";
 import Minesweeper from "./components/MineSweeper/Game";
+import ButtonGroup from "./components/MineSweeper/ButtonGroup";
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -69,6 +70,7 @@ function App() {
                   element={<Minesweeper />}
                 ></Route>
               </Routes>
+              <ButtonGroup />
               <Footer />
             </Router>
           </ThemeProvider>

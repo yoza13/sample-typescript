@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
-//import TourRoundedIcon from "@mui/icons-material/TourRounded";
-//import AdbIcon from "@mui/icons-material/Adb";
+
 import GameContext from "./GameContext";
 import settings from "./settings.json";
 import { getRandomInteger } from "./helper";
@@ -19,13 +18,10 @@ export default function Panel() {
     toggle,
     skillLevel,
   } = useContext(GameContext);
-  const data = useContext(GameContext);
 
   const [boardValues, setBoardValues] = useState([]);
   const [flagsBoard, setFlagsBoard] = useState([]);
   const [minePositions, setMinePositions] = useState([]);
-  console.log("data");
-  console.log(data);
 
   const createBoard = (rows, columns) => {
     let board = [];
@@ -41,14 +37,16 @@ export default function Panel() {
     return board;
   };
   const countMines = (x, y, boardValues) => {
+    const rowsGrid = settings[skillLevel].xFieldsCount - 1;
+    const columnsGrid = settings[skillLevel].yFieldsCount - 1;
     const rows = [x - 1, x, x + 1];
     const cols = [y - 1, y, y + 1];
     let adjacentMines = 0;
 
     rows.forEach((row) => {
-      if (row >= 0 && row <= 7) {
+      if (row >= 0 && row <= rowsGrid) {
         cols.forEach((col) => {
-          if (col >= 0 && col <= 7) {
+          if (col >= 0 && col <= columnsGrid) {
             if (boardValues[row][col] === "Mine") {
               adjacentMines++;
             }
@@ -88,11 +86,7 @@ export default function Panel() {
         }
       }
     }
-    console.log("================boardValues======================");
-    console.log(boardValues);
 
-    console.log("================minePositions======================");
-    console.log(minePositions);
     setBoardValues(boardValues);
     setCellStates(cellStates);
     setFlagsBoard(flagsBoard);

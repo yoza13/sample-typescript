@@ -65,8 +65,7 @@ export default function Cell({
       }}
       disabled={bombClicked ? true : false}
     >
-      {flagged === true && <TourIcon />}
-      {showValue()}
+      {flagged === true ? <TourIcon /> : showValue()}
     </Button>
   );
 }

@@ -10,12 +10,12 @@ import {
   Popover,
   Typography,
 } from "@mui/material";
-import { isBrowser, isMobile } from "react-device-detect";
 import { useStyles } from "../../useStyles";
 import Panel from "./Panel";
 import { GameContextProvider } from "./GameContext";
 import Settings from "./Settings";
 import Details from "./Details";
+import ButtonGroup from "./ButtonGroup";
 
 export default function Minesweeper() {
   const classes = useStyles();
@@ -29,7 +29,6 @@ export default function Minesweeper() {
   const [skillLevel, setSkillLevel] = useState("beginner");
   const [pauseButtonClicked, setPauseButtonClicked] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  console.log(isBrowser, isMobile);
 
   function toggle() {
     setIsActive(!isActive);
@@ -80,13 +79,15 @@ export default function Minesweeper() {
     >
       <Container className={classes.appContainer}>
         <Card raised={true} className={classes.contentBox}>
-          {!isBrowser && (
-            <Alert variant="filled" severity="warning">
-              <AlertTitle>Warning</AlertTitle>
-              This game uses right click for selection of mines and so it is not
-              mobile or tablet compatible.
-            </Alert>
-          )}
+          <Alert
+            variant="filled"
+            severity="warning"
+            className={classes.gameAlert}
+          >
+            <AlertTitle>Warning</AlertTitle>
+            This game uses right click for selection of mines and so it is not
+            mobile or tablet compatible.
+          </Alert>
           <Card>
             <CardHeader
               title="Minesweeper"
@@ -148,6 +149,7 @@ export default function Minesweeper() {
               </Alert>
             )}
             <Panel />
+            <ButtonGroup />
           </Card>
         </Card>
       </Container>

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
-  Button,
   Card,
   Container,
   IconButton,
@@ -16,19 +15,8 @@ import GameContext from "./GameContext";
 import settings from "./settings.json";
 
 export default function Details() {
-  const {
-    seconds,
-    flagsMarked,
-    cellStates,
-    resetGame,
-    gameState,
-    toggle,
-    pauseButtonClicked,
-    setPauseButtonClicked,
-    resetTimer,
-    setNewGame,
-    skillLevel,
-  } = useContext(GameContext);
+  const { seconds, flagsMarked, cellStates, skillLevel } =
+    useContext(GameContext);
   const [markedCells, setMarkedCells] = useState(0);
 
   useEffect(() => {
@@ -100,45 +88,6 @@ export default function Details() {
             </Typography>
             <Typography variant="body1">{`${settings[skillLevel].xFieldsCount}x${settings[skillLevel].yFieldsCount}`}</Typography>
           </Box>
-        </Stack>
-        <Stack sx={{ width: "50%", margin: "auto", marginBottom: "16px" }}>
-          {gameState === "lost" && (
-            <Button
-              variant="contained"
-              onClick={() => {
-                setNewGame(true);
-                resetGame();
-                resetTimer();
-              }}
-              sx={{ mb: 1 }}
-            >
-              Play Again
-            </Button>
-          )}
-          {!pauseButtonClicked && seconds > 0 && (
-            <Button
-              variant="contained"
-              onClick={() => {
-                toggle();
-                setPauseButtonClicked(true);
-              }}
-              sx={{ mb: 1 }}
-            >
-              Pause
-            </Button>
-          )}
-          {pauseButtonClicked && (
-            <Button
-              variant="contained"
-              onClick={() => {
-                toggle();
-                setPauseButtonClicked(false);
-              }}
-              sx={{ mb: 1 }}
-            >
-              Continue
-            </Button>
-          )}
         </Stack>
       </Card>
     </Container>
