@@ -5,6 +5,9 @@ module.exports = {
   entry: "./src/index.tsx",
   target: "web",
   mode: "development",
+  devServer: {
+    historyApiFallback: true,
+  },
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
@@ -63,6 +66,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
+      favicon: "./src/Yash.ico",
     }),
     new MiniCssExtractPlugin({
       filename: "./src/yourfile.css",
