@@ -1,49 +1,32 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const dotenv = require("dotenv");
-const webpack = require("webpack");
-
-dotenv.config();
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
+  entry: "./src/index.tsx",
+  target: "web",
   mode: "development",
-  devServer: {
-    historyApiFallback: true,
-  },
-  entry: "./src/index.js",
   output: {
-    filename: "bundle.[hash].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js",
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      favicon: "./src/Yash.ico",
-    }),
-    new webpack.DefinePlugin({
-      "process.env": JSON.stringify(process.env),
-    }),
-    new webpack.ProvidePlugin({
-      process: "process/browser",
-    }),
-  ],
   resolve: {
-    modules: [__dirname, "src", "node_modules"],
-    extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
-    alias: {
-      process: "process/browser",
-    },
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader",
         exclude: /node_modules/,
-        loader: require.resolve("babel-loader"),
       },
       {
-        test: /\.css|.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
+      },
+      {
+        test: /\.css$/,
+        loader: "css-loader",
       },
       {
         test: /\.png|jpg|gif$/,
@@ -77,4 +60,12 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src", "index.html"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "./src/yourfile.css",
+    }),
+  ],
 };

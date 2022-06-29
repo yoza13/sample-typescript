@@ -11,59 +11,59 @@
   "skills": [
     {
       "title": "Javascript",
-      "data": "1380"
+      "data": 1380
     },
     {
       "title": "React",
-      "data": "1240"
+      "data": 1240
     },
     {
       "title": "Angular",
-      "data": "600"
+      "data": 600
     },
     {
       "title": "Redux",
-      "data": "1240"
+      "data": 1240
     },
     {
       "title": "Node",
-      "data": "1380"
+      "data": 1380
     },
     {
       "title": "JAVA",
-      "data": "720"
+      "data": 720
     },
     {
       "title": "HTML",
-      "data": "1380"
+      "data": 1380
     },
     {
       "title": "CSS",
-      "data": "1380"
+      "data": 1380
     },
     {
       "title": "TypeScript",
-      "data": "1040"
+      "data": 1040
     },
     {
       "title": ".NET",
-      "data": "550"
+      "data": 550
     },
     {
       "title": "AWS",
-      "data": "550"
+      "data": 550
     },
     {
       "title": "Jenkins",
-      "data": "843"
+      "data": 843
     },
     {
       "title": "WebdriverIO",
-      "data": "1380"
+      "data": 1380
     },
     {
       "title": "CucumberJS",
-      "data": "1145"
+      "data": 1145
     }
   ],
 
