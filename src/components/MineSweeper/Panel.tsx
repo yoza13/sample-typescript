@@ -160,12 +160,14 @@ export const Panel: React.FC = () => {
   const checkAdjacentCells = (x: number, y: number) => {
     const rows = [x - 1, x, x + 1];
     const cols = [y - 1, y, y + 1];
+    const xFieldsCount = settings[skillLevel].xFieldsCount;
+    const yFieldsCount = settings[skillLevel].yFieldsCount;
     const updatedCellState = [...cellStates];
 
     rows.forEach((row) => {
-      if (row >= 0 && row <= 8) {
+      if (row >= 0 && row <= xFieldsCount - 1) {
         cols.forEach((col) => {
-          if (col >= 0 && col <= 8) {
+          if (col >= 0 && col <= yFieldsCount - 1) {
             if (
               cellStates[row][col] === false &&
               flagsBoard[row][col] === false

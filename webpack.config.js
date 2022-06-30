@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: "./src/index.tsx",
   target: "web",
@@ -55,9 +54,6 @@ module.exports = {
         use: [
           {
             loader: "docx-loader",
-            options: {
-              removeLinks: true,
-            },
           },
         ],
       },
@@ -67,9 +63,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
       favicon: "./src/Yash.ico",
-    }),
-    new MiniCssExtractPlugin({
-      filename: "./src/yourfile.css",
     }),
   ],
 };

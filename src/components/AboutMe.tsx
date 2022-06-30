@@ -18,10 +18,10 @@ import {
 } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useStyles } from "../useStyles";
-const Resume_Pdf = require("../documents/Yash_Oza_Resume.pdf");
-const Resume_Doc = require("../documents/Yash_Oza_Resume.docx");
 import AppContext from "../ApplicationContext";
 import AboutMeDetails from "../content/about-me.json";
+
+const Resume_Pdf = require("../documents/Yash_Oza_Resume.pdf").default;
 
 export const AboutMe: React.FC = () => {
   const [showSummary, setShowSummary] = React.useState<boolean>(false);
@@ -195,13 +195,6 @@ export const AboutMe: React.FC = () => {
           className={classes.downloadLinks}
         >
           &#9733; &nbsp;Download Resume as PDF &nbsp;&#9733;
-        </a>
-        <a
-          download={Resume_Doc}
-          href={Resume_Doc}
-          className={classes.downloadLinks}
-        >
-          &#9733; &nbsp;Download Resume as Word &nbsp;&#9733;
         </a>
       </Stack>
     </Container>

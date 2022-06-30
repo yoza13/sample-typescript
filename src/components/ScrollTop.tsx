@@ -1,5 +1,4 @@
 import * as React from "react";
-import { element, func } from "prop-types";
 import { Box, Fade, useScrollTrigger } from "@mui/material";
 
 interface ScrollTopProps {

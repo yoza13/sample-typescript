@@ -1,8 +1,5 @@
 import * as React from "react";
-import { Button, Stack } from "@mui/material";
-import { Box } from "@mui/system";
-import { arrayOf, func, string } from "prop-types";
-
+import { Box, Button, Stack } from "@mui/material";
 import AppContext from "../../ApplicationContext";
 import { useStyles } from "../../useStyles";
 
@@ -197,13 +194,4 @@ export const ButtonPanel: React.FC<ButtonPanelProps> = ({
       </Stack>
     </Box>
   );
-};
-
-ButtonPanel.propTypes = {
-  setValue: func.isRequired,
-  value: string.isRequired,
-  addedValues: arrayOf(string).isRequired,
-  setAddedValues: func.isRequired,
-  operator: string.isRequired,
-  setOperator: func.isRequired,
 };

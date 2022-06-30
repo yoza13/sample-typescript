@@ -2,6 +2,7 @@ import * as React from "react";
 import { Avatar, Box, Container, Stack, Typography } from "@mui/material";
 import { useStyles } from "../useStyles";
 import AppContext from "../ApplicationContext";
+import Typewritter from "typewriter-effect";
 const Yash = require("../images/Yash.jpg").default;
 
 export const Home: React.FC = () => {
@@ -33,7 +34,7 @@ export const Home: React.FC = () => {
       <Typography variant="h3" gutterBottom component="div">
         What I do ?
       </Typography>
-      {/* <Typewritter
+      <Typewritter
         options={{
           strings: [
             "I am a Full Stack Developer",
@@ -44,7 +45,7 @@ export const Home: React.FC = () => {
           loop: true,
           cursor: "<",
         }}
-      /> */}
+      />
     </Container>
   );
 };
