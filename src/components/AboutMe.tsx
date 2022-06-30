@@ -190,7 +190,7 @@ export const AboutMe: React.FC = () => {
       </Card>
       <Stack className={classes.downloadBlock}>
         <a
-          download={Resume_Pdf}
+          download="Yash_Oza"
           href={Resume_Pdf}
           className={classes.downloadLinks}
         >
